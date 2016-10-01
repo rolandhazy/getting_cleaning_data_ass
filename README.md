@@ -3,5 +3,5 @@
 This repo contains the run_analysis.R script which:
  - downloads and unzips the smartphone activity data
  - loads the train and test data
- - creates a tidy set merging the train and test
- - creates a second tidy set aggregating by subject and activity taking the variable means
+ - creates tidy_set_01 merging the train and test
+ - creates tidy_set_02 aggregating by subject and activity taking the variable means
