@@ -4,7 +4,7 @@ for tidy_set_01 and tidy_set_02:
 - Variables from original set but filtered to only contain the mean and standard deviation of the measurements (from 'features_info.txt'). These signals were used to estimate variables of the feature vector for each pattern:  
 '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-tBodyAcc-XYZ
+tBodyAcc-XYZ /n
 tGravityAcc-XYZ
 tBodyAccJerk-XYZ
 tBodyGyro-XYZ
