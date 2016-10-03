@@ -9,6 +9,9 @@ unzip("dataset.zip")
 feature_names = scan("./UCI HAR Dataset/features.txt", "character")
 feature_names = feature_names[seq(2, 1122, by = 2)]
 
+#clean feature names
+feature_names = gsub("\\(\\)", "" ,feature_names)
+
 #load activity labels
 activity_labels = scan("./UCI HAR Dataset/activity_labels.txt", "character")
 activity_labels = activity_labels[seq(2,12, by = 2)]
@@ -19,7 +22,7 @@ library(readr)
 
 #load train set
 train_set = read_fwf("./UCI HAR Dataset/train/X_train.txt", 
-                 fwf_widths(c(rep(16, 561))))
+                     fwf_widths(c(rep(16, 561))))
 
 #name train variables
 names(train_set) = feature_names
@@ -35,7 +38,7 @@ names(test_set) = feature_names
 full_set = rbind(train_set, test_set)
 
 #create logical vector containing 'mean' or 'std'
-mean_std = grepl("mean|std", names)
+mean_std = grepl("mean-|std-", feature_names)
 
 #subset full_set
 full_set = full_set[, mean_std]
@@ -65,5 +68,8 @@ tidy_set_01 = cbind(subject, full_set, labels)
 
 ##############################
 #create second aggregated tidy set
-tidy_set_02 = aggregate(tidy_set_01[, -c(1, 563)], 
+tidy_set_02 = aggregate(tidy_set_01[, -c(1, 50)], 
                         list(subject = tidy_set_01$subject, labels = tidy_set_01$labels), mean)
+
+#write out tidy set2
+write.table(tidy_set_02, "tidy_set_02.txt", row.names = F)
